@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    @apply text-white scroll-smooth;
+}
+
+@layer components {
+    .btn {
+        @apply relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-3xl bg-gradient-to-br;
+    }
+    .btn-span {
+        @apply relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-3xl group-hover:bg-opacity-0;
+    }
+    .sm {
+        @apply px-2;
+    }
+
+    .md {
+        @apply px-4;
+    }
+
+    .lg {
+        @apply px-8;
+    }
+
+    .xl {
+        @apply px-16;
+    }
+}
+button {
+    border: 0;
+}
