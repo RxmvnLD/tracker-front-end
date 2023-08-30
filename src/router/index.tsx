@@ -5,6 +5,7 @@ import DashboardPage from "../pages/DashboardPage";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import UnauthorizedRoute from "./UnauthorizedRoute";
+
 const router = createBrowserRouter([
     {
         path: "/",

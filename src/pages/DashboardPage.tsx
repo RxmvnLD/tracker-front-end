@@ -1,19 +1,11 @@
-import { useEffect } from "react";
-import { axiosGet } from "../utils/axiosInstance";
+import MainLayout from "../layouts/MainLayout";
+import Summary from "../components/Summary";
 const DashboardPage = () => {
-    const getAccounts = async () => {
-        try {
-            const userData = await axiosGet("/api/users");
-            console.log(userData);
-        } catch (error: any) {
-            console.log(error);
-        }
-    };
-    useEffect(() => {
-        getAccounts();
-    }, []);
-
-    return <div>DashboardPage</div>;
+    return (
+        <MainLayout>
+            <Summary />
+        </MainLayout>
+    );
 };
 
 export default DashboardPage;

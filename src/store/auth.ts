@@ -10,6 +10,7 @@ interface AuthState {
 interface AuthActions {
     setUserData: (userData: AuthenticatedUser) => void;
     setIsLogged: (isLogged: boolean) => void;
+    setUnauthUser: () => void;
 }
 
 export const useAuthStore = create(
@@ -25,6 +26,16 @@ export const useAuthStore = create(
             setUserData: (authenticatedUser: AuthenticatedUser) =>
                 set(() => ({ authenticatedUser })),
             setIsLogged: (isLogged: boolean) => set(() => ({ isLogged })),
+            setUnauthUser: () =>
+                set(() => ({
+                    authenticatedUser: {
+                        username: "",
+                        email: "",
+                        id: 0,
+                        token: "",
+                    },
+                    isLogged: false,
+                })),
         }),
         {
             name: "auth-storage",
