@@ -83,7 +83,7 @@ const Desktop = () => {
         navigate("/login");
     };
     return (
-        <div className="relative hidden h-full my-auto md:flex md:w-1/4 lg:w-1/6 xl:w-1/12">
+        <div className="relative hidden h-full my-auto md:flex lg:w-1/6 xl:w-1/12">
             <nav
                 className="absolute md:flex-col hidden z-40 max-w-fit gap-5 top-[calc(100vh_/_4)] bg-[#292764] md:flex p-5 rounded-lg ml-5 my-auto shadow-[0rem_0rem_1rem_0.2rem] shadow-indigo-900"
                 onMouseEnter={() => {
@@ -167,7 +167,7 @@ const SidebarItem = ({
         return (
             <Link
                 to={href}
-                className={`flex items-center gap-2 pl-3 py-2  hover:bg-[#4338ca] hover:shadow-[0rem_0rem_1rem_0.1rem] hover:shadow-indigo-700 rounded-md text-white ${
+                className={`flex items-center gap-2 pl-3 py-2  hover:bg-[#4338ca] hover:shadow-[0rem_0rem_1rem_0.1rem] hover:shadow-indigo-700 rounded-md text-white decoration-transparent ${
                     showText ? "pr-10" : "pr-3"
                 }`}
             >
@@ -185,7 +185,7 @@ const SidebarItem = ({
         return (
             <button
                 onClick={onClick}
-                className={`flex items-center gap-2 pl-3 py-2 bg-transparent hover:bg-[#4338ca] hover:shadow-[0rem_0rem_1rem_0.1rem] hover:shadow-indigo-700 rounded-md text-white ${
+                className={`flex items-center gap-2 pl-3 py-2 bg-transparent hover:bg-[#4338ca] hover:shadow-[0rem_0rem_1rem_0.1rem] hover:shadow-indigo-700 rounded-md text-white text-base ${
                     showText ? "pr-10" : "pr-3"
                 }`}
             >

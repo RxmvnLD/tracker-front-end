@@ -1,5 +1,5 @@
 import axios, { AxiosHeaders } from "axios";
-import { BASE_URL } from "../config/constants";
+import { BASE_URL } from "../config/env";
 import { useAuthStore } from "../store/auth";
 
 const instance = axios.create({

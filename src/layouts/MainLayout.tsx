@@ -6,9 +6,9 @@ export default function MainLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex flex-col w-screen h-screen md:gap-10 md:flex-row">
+        <div className="flex flex-col w-screen min-h-screen overflow-x-clip md:h-screen md:gap-10 md:flex-row">
             <Sidebar />
-            <main className="flex flex-col h-full p-5 mx-auto md:w-auto md:p-10 lg:p-5 xl:p-20 2xl:p-40">
+            <main className="flex flex-col items-center w-full h-full gap-10 p-5 md:mx-auto md:w-auto md:p-10 lg:p-5 xl:p-20 2xl:p-5">
                 {children}
             </main>
         </div>

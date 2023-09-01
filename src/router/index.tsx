@@ -35,6 +35,46 @@ const router = createBrowserRouter([
             </ProtectedRoute>
         ),
     },
+    {
+        path: "/accounts",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/transactions",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/bets",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/passwords",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/configuration",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
     { path: "*", element: <h1>404</h1> },
 ]);
 
