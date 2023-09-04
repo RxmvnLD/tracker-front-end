@@ -23,7 +23,7 @@ const DashboardTransactions = () => {
 
     return (
         <div className="flex flex-col items-center w-full shadow-[0rem_0rem_1rem_0.2rem] p-3 rounded-xl shadow-violet-500 ">
-            <div className="flex flex-row gap-10">
+            <div className="flex flex-row justify-center gap-10 min-w-min">
                 <GradientButton color="tealLime">
                     Agregar transacción
                 </GradientButton>
