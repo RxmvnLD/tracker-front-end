@@ -8,7 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { axiosPost } from "../utils/axiosInstance";
 import DarkModal from "../components/SwalAlert";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 
 interface Inputs {
@@ -29,7 +29,6 @@ const SignupPage = () => {
     } = useForm<Inputs>({ mode: "onChange" });
     const setUserData = useAuthStore((state) => state.setUserData),
         setIsLogged = useAuthStore((state) => state.setIsLogged);
-    const navigate = useNavigate();
     const onSubmit: SubmitHandler<Inputs> = async (data, e) => {
         e?.preventDefault();
         try {
@@ -39,16 +38,19 @@ const SignupPage = () => {
                 allowOutsideClick: false,
                 didOpen: () => Swal.showLoading(),
             });
-
             const { user } = await axiosPost("/api/signup", data);
             setUserData(user);
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    DarkModal({
+                        didOpen: () => {
+                            Swal.close();
+                        },
+                    });
+                    resolve("resolved");
+                }, 1500),
+            );
             setIsLogged(true);
-            DarkModal({
-                didOpen: async () => {
-                    Swal.close();
-                    navigate("/dashboard");
-                },
-            });
         } catch (error: any) {
             DarkModal({
                 didOpen: () => {

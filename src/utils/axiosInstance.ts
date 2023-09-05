@@ -1,5 +1,5 @@
-import axios, { AxiosError, AxiosHeaders } from "axios";
-import { BASE_URL } from "../config/constants";
+import axios, { AxiosHeaders } from "axios";
+import { BASE_URL } from "../config/env";
 import { useAuthStore } from "../store/auth";
 
 const instance = axios.create({
@@ -18,10 +18,9 @@ export const axiosGet = async (url: string, _headers?: AxiosHeaders) => {
         const res = await instance.get(url);
         if (res.status === 200) return res.data;
         else return res;
-    } catch (error) {
+    } catch (error: any) {
         if (error instanceof Error) {
-            console.log(error.message);
-            throw error.message;
+            throw error;
         }
     }
 };
@@ -34,9 +33,9 @@ export const axiosPost = async (
         const res = await instance.post(url, data);
         if (res.status === 200) return res.data;
         else return res;
-    } catch (error) {
-        if (error instanceof AxiosError) {
-            throw error.response?.data;
+    } catch (error: any) {
+        if (error instanceof Error) {
+            throw error;
         }
     }
 };
@@ -49,10 +48,9 @@ export const axiosPut = async (
         const res = await instance.put(url, data);
         if (res.status === 200) return res.data;
         else return res;
-    } catch (error) {
+    } catch (error: any) {
         if (error instanceof Error) {
-            console.log(error.message);
-            throw error.message;
+            throw error;
         }
     }
 };
@@ -64,10 +62,9 @@ export const axiosDelete = async (
     try {
         const res = await instance.delete(url, data);
         return res.data;
-    } catch (error) {
+    } catch (error: any) {
         if (error instanceof Error) {
-            console.log(error.message);
-            throw error.message;
+            throw error;
         }
     }
 };

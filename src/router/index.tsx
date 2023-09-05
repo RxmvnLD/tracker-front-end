@@ -5,6 +5,7 @@ import DashboardPage from "../pages/DashboardPage";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import UnauthorizedRoute from "./UnauthorizedRoute";
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -28,6 +29,54 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/accounts",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/transactions",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/bankaccounts",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/bets",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/passwords",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/configuration",
         element: (
             <ProtectedRoute>
                 <DashboardPage />

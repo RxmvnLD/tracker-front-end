@@ -1,0 +1,4 @@
+//ENVIROMENT VARIABLES - DEV
+export const BASE_URL = "http://localhost:8090";
+
+//ENVIROMENT VARIABLES - PROD

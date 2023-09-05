@@ -54,7 +54,7 @@ export default function GradientButton({
         <button
             className={`btn group ${styles} ${colorClass} ${
                 disabled
-                    ? "group from-neutral-900 to-gray-700 group-hover:from-slate-900 group-hover:to-gray-500 hover:text-white dark:text-white "
+                    ? "group from-neutral-900 to-gray-700 group-hover:from-slate-900 group-hover:to-gray-500 hover:text-white dark:text-white"
                     : ""
             }`}
             onClick={onClick}
@@ -62,7 +62,7 @@ export default function GradientButton({
             type={type}
         >
             <span
-                className={`btn-span ${size} ${
+                className={`btn-span cursor-pointer ${size} ${
                     disabled ? "dark:bg-gray-900" : ""
                 }`}
             >

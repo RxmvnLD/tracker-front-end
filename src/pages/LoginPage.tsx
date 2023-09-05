@@ -10,8 +10,6 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { axiosPost } from "../utils/axiosInstance";
 import { useAuthStore } from "../store/auth";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 interface Inputs {
     email: string;
@@ -27,7 +25,6 @@ const LoginPage = () => {
     } = useForm<Inputs>({ mode: "onChange" });
     const setUserData = useAuthStore((state) => state.setUserData),
         setIsLogged = useAuthStore((state) => state.setIsLogged);
-    const navigate = useNavigate();
     const onSubmit: SubmitHandler<Inputs> = async (inputData, e) => {
         e?.preventDefault();
         try {
@@ -37,16 +34,19 @@ const LoginPage = () => {
                 allowOutsideClick: false,
                 didOpen: () => Swal.showLoading(),
             });
-
             const { user } = await axiosPost("/api/login", inputData);
             setUserData(user);
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    DarkModal({
+                        didOpen: () => {
+                            Swal.close();
+                        },
+                    });
+                    resolve("resolved");
+                }, 3000),
+            );
             setIsLogged(true);
-            DarkModal({
-                didOpen: async () => {
-                    Swal.close();
-                    navigate("/dashboard");
-                },
-            });
         } catch (error: any) {
             DarkModal({
                 didOpen: () => {
