@@ -28,6 +28,9 @@ export type BankAccColor =
 export type SummaryBankAccColors = {
     [key: string]: { name: BankAccColor; value: string };
 };
+export type BankAccountTypes = {
+    [key: string]: { name: BankAccType; value: string };
+};
 export type SummaryBankAccount = {
     name: string;
     balance: number;
@@ -43,4 +46,36 @@ export type Transaction = {
     name: string;
     type: TransactionType;
     user: string;
+};
+
+export type BankAccount = {
+    color: BankAccColor;
+    createdAt: string;
+    id: string;
+    name: string;
+    transactions: {
+        incomes: string[];
+        expenses: string[];
+    };
+    type: BankAccType;
+    updatedAt: string;
+    user: string;
+    //Dual/Debit
+    balance?: number;
+    //Dual/Credit
+    totalCredit?: number;
+    availableCredit?: number;
+    cuttOffDay?: Date;
+    paydayLimit?: Date;
+};
+export type BankAccountCard = {
+    color: BankAccColor;
+    id: string;
+    name: string;
+    type: BankAccType;
+    //Dual/Debit
+    balance?: number;
+    //Dual/Credit
+    totalCredit?: number;
+    availableCredit?: number;
 };

@@ -52,6 +52,14 @@ const router = createBrowserRouter([
         ),
     },
     {
+        path: "/bankaccounts",
+        element: (
+            <ProtectedRoute>
+                <DashboardPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
         path: "/bets",
         element: (
             <ProtectedRoute>

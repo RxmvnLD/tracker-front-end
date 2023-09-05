@@ -1,4 +1,4 @@
-import { SummaryBankAccColors } from "../types";
+import { SummaryBankAccColors, BankAccountTypes } from "../types";
 
 export const SummaryBankAccountsColors: SummaryBankAccColors = {
     red: { name: "red", value: "#ff5555" },
@@ -13,4 +13,10 @@ export const SummaryBankAccountsColors: SummaryBankAccColors = {
     black: { name: "black", value: "#343434" },
     white: { name: "white", value: "#ffffff" },
     gray: { name: "gray", value: "#9e9e9e" },
+};
+
+export const BankAccountsType: BankAccountTypes = {
+    credit: { name: "credit", value: "crédito" },
+    debit: { name: "debit", value: "débito" },
+    dual: { name: "dual", value: "dual" },
 };

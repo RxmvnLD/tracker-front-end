@@ -1,20 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import { axiosGet } from "../utils/axiosInstance";
 import { CircularProgress } from "@mui/material";
-import TransactionCard from "./TransactionCard";
-import { Transaction as TransactionType } from "../types";
+import { BankAccountCard as BankAccountType } from "../types";
 import GradientButton from "./GradientButton";
 import { useNavigate } from "react-router-dom";
+import BankAccountCard from "./BankAccountCard";
 
-const DashboardTransactions = () => {
+const DashboardAccounts = () => {
     const navigate = useNavigate();
     const {
         isLoading,
-        data: transactions,
+        data: accounts,
         isError,
     } = useQuery({
-        queryKey: ["userTransactions"],
-        queryFn: () => axiosGet("/api/transactions/user"),
+        queryKey: ["userAccounts"],
+        queryFn: () => axiosGet("/api/bankaccounts/user"),
     });
 
     if (isLoading) return <CircularProgress />;
@@ -24,28 +24,25 @@ const DashboardTransactions = () => {
     return (
         <div className="flex flex-col items-center w-full shadow-[0rem_0rem_1rem_0.2rem] p-3 rounded-xl shadow-violet-500 ">
             <div className="flex flex-row justify-center gap-10 min-w-min">
-                <GradientButton color="tealLime">
-                    Agregar transacción
-                </GradientButton>
+                <GradientButton color="tealLime">Agregar cuenta</GradientButton>
                 <GradientButton
                     onClick={() => {
-                        navigate("/transactions");
+                        navigate("/bankaccounts");
                     }}
                 >
-                    Ver transacciones
+                    Ver mis cuentas
                 </GradientButton>
             </div>
             <article className="flex flex-row items-center w-full gap-3 p-5 overflow-x-scroll min-h-min md:max-w-4xl lg:content-center">
-                {transactions.map((transaction: TransactionType) => (
-                    <TransactionCard
-                        name={transaction.name}
-                        type={transaction.type}
-                        amount={transaction.amount}
-                        bankAccount={transaction.bankAccount}
-                        user={transaction.user}
-                        createdAt={transaction.createdAt}
-                        id={transaction.id}
-                        key={transaction.id}
+                {accounts.map((account: BankAccountType) => (
+                    <BankAccountCard
+                        color={account.color}
+                        name={account.name}
+                        type={account.type}
+                        id={account.id}
+                        balance={account.balance}
+                        totalCredit={account.totalCredit}
+                        availableCredit={account.availableCredit}
                     />
                 ))}
             </article>
@@ -53,4 +50,4 @@ const DashboardTransactions = () => {
     );
 };
 
-export default DashboardTransactions;
+export default DashboardAccounts;
