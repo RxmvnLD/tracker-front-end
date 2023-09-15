@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { axiosGet } from "../utils/axiosInstance";
+import axiosInstance from "../../utils/axiosInstance";
 import { CircularProgress } from "@mui/material";
-import TransactionCard from "./TransactionCard";
-import { Transaction as TransactionType } from "../types";
-import GradientButton from "./GradientButton";
+import TransactionCard from "../TransactionCard";
+import { Transaction as TransactionType } from "../../types";
+import GradientButton from "../GradientButton";
 import { useNavigate } from "react-router-dom";
 
 const DashboardTransactions = () => {
@@ -14,7 +14,16 @@ const DashboardTransactions = () => {
         isError,
     } = useQuery({
         queryKey: ["userTransactions"],
-        queryFn: () => axiosGet("/api/transactions/user"),
+        queryFn: async () => {
+            try {
+                const { data } = await axiosInstance.get(
+                    "/api/transactions/user",
+                );
+                return data;
+            } catch (error: any) {
+                console.log(error.response);
+            }
+        },
     });
 
     if (isLoading) return <CircularProgress />;
