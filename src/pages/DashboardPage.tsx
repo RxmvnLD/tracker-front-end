@@ -1,14 +1,13 @@
-import MainLayout from "../layouts/MainLayout";
-import Summary from "../components/Summary";
-import DashboardTransactions from "../components/DashboardTransactions";
-import DashboardBankAccounts from "../components/DashboardBankAccounts";
+import Summary from "../components/dashboard/Summary";
+import DashboardTransactions from "../components/dashboard/DashboardTransactions";
+import DashboardBankAccounts from "../components/dashboard/DashboardBankAccounts";
 const DashboardPage = () => {
     return (
-        <MainLayout>
+        <>
             <Summary />
             <DashboardBankAccounts />
             <DashboardTransactions />
-        </MainLayout>
+        </>
     );
 };
 

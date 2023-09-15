@@ -24,3 +24,5 @@ dist-ssr
 *.sln
 *.sw?
 src/config/env.ts
+yarn.lock
+yarn.lock

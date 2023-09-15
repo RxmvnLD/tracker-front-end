@@ -7,7 +7,6 @@ import { BsRobot } from "react-icons/bs";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
-import DarkModal from "./SwalAlert";
 const Sidebar = () => {
     return (
         <>

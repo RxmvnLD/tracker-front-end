@@ -5,6 +5,8 @@ import DashboardPage from "../pages/DashboardPage";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import UnauthorizedRoute from "./UnauthorizedRoute";
+import MainLayout from "../layouts/MainLayout";
+import AuthLayout from "../layouts/AuthLayout";
 
 const router = createBrowserRouter([
     {
@@ -12,78 +14,40 @@ const router = createBrowserRouter([
         element: <HomePage />,
     },
     {
-        path: "/login",
-        element: (
-            <UnauthorizedRoute>
-                <LoginPage />
-            </UnauthorizedRoute>
-        ),
+        element: <UnauthorizedRoute />,
+        children: [
+            {
+                element: <AuthLayout />,
+                children: [
+                    {
+                        path: "/login",
+                        element: <LoginPage />,
+                    },
+                    {
+                        path: "/signup",
+                        element: <SignupPage />,
+                    },
+                ],
+            },
+        ],
     },
     {
-        path: "/signup",
-        element: (
-            <UnauthorizedRoute>
-                <SignupPage />
-            </UnauthorizedRoute>
-        ),
+        element: <ProtectedRoute />,
+        children: [
+            {
+                element: <MainLayout />,
+                children: [
+                    { element: <DashboardPage />, path: "/dashboard" },
+                    { element: <DashboardPage />, path: "/transactions" },
+                    { element: <DashboardPage />, path: "/bankaccounts" },
+                    { element: <DashboardPage />, path: "/bets" },
+                    { element: <DashboardPage />, path: "/passwords" },
+                    { element: <DashboardPage />, path: "/configuration" },
+                ],
+            },
+        ],
     },
-    {
-        path: "/dashboard",
-        element: (
-            <ProtectedRoute>
-                <DashboardPage />
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/accounts",
-        element: (
-            <ProtectedRoute>
-                <DashboardPage />
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/transactions",
-        element: (
-            <ProtectedRoute>
-                <DashboardPage />
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/bankaccounts",
-        element: (
-            <ProtectedRoute>
-                <DashboardPage />
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/bets",
-        element: (
-            <ProtectedRoute>
-                <DashboardPage />
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/passwords",
-        element: (
-            <ProtectedRoute>
-                <DashboardPage />
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/configuration",
-        element: (
-            <ProtectedRoute>
-                <DashboardPage />
-            </ProtectedRoute>
-        ),
-    },
-    { path: "*", element: <h1>404</h1> },
+    { path: "*", element: <HomePage /> },
 ]);
 
 export default router;

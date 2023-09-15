@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { axiosGet } from "../utils/axiosInstance";
+import axiosInstance from "../../utils/axiosInstance";
 import { CircularProgress } from "@mui/material";
-import { BankAccountCard as BankAccountType } from "../types";
-import GradientButton from "./GradientButton";
+import { BankAccountCard as BankAccountType } from "../../types";
+import GradientButton from "../GradientButton";
 import { useNavigate } from "react-router-dom";
-import BankAccountCard from "./BankAccountCard";
+import BankAccountCard from "../BankAccountCard";
 
-const DashboardAccounts = () => {
+const DashboardBankAccounts = () => {
     const navigate = useNavigate();
     const {
         isLoading,
@@ -14,7 +14,16 @@ const DashboardAccounts = () => {
         isError,
     } = useQuery({
         queryKey: ["userAccounts"],
-        queryFn: () => axiosGet("/api/bankaccounts/user"),
+        queryFn: async () => {
+            try {
+                const { data } = await axiosInstance.get(
+                    "/api/bankaccounts/user",
+                );
+                return data;
+            } catch (error: any) {
+                console.log(error.response);
+            }
+        },
     });
 
     if (isLoading) return <CircularProgress />;
@@ -43,6 +52,7 @@ const DashboardAccounts = () => {
                         balance={account.balance}
                         totalCredit={account.totalCredit}
                         availableCredit={account.availableCredit}
+                        key={account.id}
                     />
                 ))}
             </article>
@@ -50,4 +60,4 @@ const DashboardAccounts = () => {
     );
 };
 
-export default DashboardAccounts;
+export default DashboardBankAccounts;

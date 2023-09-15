@@ -1,7 +1,7 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { SummaryBankAccountsColors } from "../config/constants.ts";
-import { SummaryBankAccount } from "../types/index.ts";
+import { SummaryBankAccountsColors } from "../../config/constants.ts";
+import { SummaryBankAccount } from "../../types/index.ts";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

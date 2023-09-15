@@ -1,16 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
-import { axiosGet } from "../utils/axiosInstance";
+import axiosInstance from "../../utils/axiosInstance";
 import { CircularProgress } from "@mui/material";
 import { BalanceGraph, IncomesExpensesGraph } from "./SummaryGraphs";
-import { SummaryBankAccount } from "../types";
-import GradientButton from "./GradientButton";
+import { SummaryBankAccount } from "../../types";
+import GradientButton from "../GradientButton";
 import { useNavigate } from "react-router-dom";
 
 const Summary = () => {
     const navigate = useNavigate();
     const { isLoading, data, isError } = useQuery({
         queryKey: ["summary"],
-        queryFn: () => axiosGet("/api/users/summary"),
+        queryFn: async () => {
+            try {
+                const { data } = await axiosInstance.get("/api/users/summary");
+                return data;
+            } catch (error: any) {
+                console.log(error.response);
+            }
+        },
     });
 
     if (isLoading) return <CircularProgress />;
