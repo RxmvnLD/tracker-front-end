@@ -13,7 +13,7 @@ const DashboardTransactions = () => {
         data: transactions,
         isError,
     } = useQuery({
-        queryKey: ["userTransactions"],
+        queryKey: ["transactions"],
         queryFn: async () => {
             try {
                 const { data } = await axiosInstance.get(

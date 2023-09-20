@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BankAccountCard as BankAccountType } from "../types";
 import {
     SummaryBankAccountsColors,
@@ -15,6 +15,7 @@ const BankAccountCard = ({
     totalCredit,
     availableCredit,
 }: BankAccountType) => {
+    const { pathname } = useLocation();
     return (
         <section
             className={`bg-[${SummaryBankAccountsColors[color].value}6e] border-[${SummaryBankAccountsColors[color].value}] h-40 w-72 rounded-xl flex flex-col items-center gap-2 justify-center border-2 border-solid shrink-0 p-2 px-6`}
@@ -63,8 +64,9 @@ const BankAccountCard = ({
                 </>
             )}
             <Link
-                to={`bankAccounts/${id}`}
+                to={`/bankaccounts/${id}`}
                 className="m-0 text-white decoration-transparent"
+                state={{ previousPath: pathname }}
             >
                 Ver detalles
             </Link>
