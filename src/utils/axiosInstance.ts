@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { BASE_URL } from "../config/env";
 import { useAuthStore } from "../store/auth";
 
@@ -15,13 +15,13 @@ axiosInstance.interceptors.request.use((config) => {
 
 axiosInstance.interceptors.response.use(
     (res) => res,
-    (error) => {
-        if (error.response.status === 401) {
+    (error: AxiosError) => {
+        if (error?.response?.status === 401) {
             const state = useAuthStore.getState();
             state.setUnauthUser();
             window.location.href = "/login";
         }
-        return error;
+        throw error;
     },
 );
 

@@ -7,6 +7,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import UnauthorizedRoute from "./UnauthorizedRoute";
 import MainLayout from "../layouts/MainLayout";
 import AuthLayout from "../layouts/AuthLayout";
+import AccountsPage from "../pages/AccountsPage";
+import AccountDetails from "../components/accounts/AccountDetails";
 
 const router = createBrowserRouter([
     {
@@ -39,7 +41,11 @@ const router = createBrowserRouter([
                 children: [
                     { element: <DashboardPage />, path: "/dashboard" },
                     { element: <DashboardPage />, path: "/transactions" },
-                    { element: <DashboardPage />, path: "/bankaccounts" },
+                    { element: <AccountsPage />, path: "/bankaccounts" },
+                    {
+                        element: <AccountDetails />,
+                        path: "/bankaccounts/:id",
+                    },
                     { element: <DashboardPage />, path: "/bets" },
                     { element: <DashboardPage />, path: "/passwords" },
                     { element: <DashboardPage />, path: "/configuration" },

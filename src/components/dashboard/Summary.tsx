@@ -65,7 +65,7 @@ const Summary = () => {
                     <div>
                         <GradientButton
                             onClick={() => {
-                                navigate("/accounts");
+                                navigate("/bankaccounts");
                             }}
                         >
                             Ver mis cuentas

@@ -102,7 +102,7 @@ const Desktop = () => {
                 <SidebarItem
                     text={"Cuentas"}
                     showText={isOpen}
-                    href="/bank-accounts"
+                    href="/bankaccounts"
                 >
                     <LiaPiggyBankSolid />
                 </SidebarItem>

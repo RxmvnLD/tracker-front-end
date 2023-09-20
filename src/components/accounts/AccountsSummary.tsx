@@ -1,20 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 import { CircularProgress } from "@mui/material";
-import { BankAccountCard as BankAccountType } from "../../types";
 import GradientButton from "../GradientButton";
-import { useNavigate } from "react-router-dom";
+import { BankAccountCard as BankAccountType } from "../../types";
 import BankAccountCard from "../BankAccountCard";
+import CreateAccountModal from "./CreateAccountModal";
 import { useState } from "react";
-import CreateAccountModal from "../accounts/CreateAccountModal";
 
-const DashboardBankAccounts = () => {
-    const navigate = useNavigate();
+const AccountsSummary = () => {
     const [showModal, setShowModal] = useState(false);
-
-    const showModalHandler = () => {
-        setShowModal(true);
-    };
 
     const {
         isLoading,
@@ -34,26 +28,19 @@ const DashboardBankAccounts = () => {
         },
     });
 
+    const showModalHandler = () => {
+        setShowModal(true);
+    };
+
     if (isLoading) return <CircularProgress />;
 
     if (isError) return <div>Ha ocurrido un error recuperando tus datos</div>;
-
+    accounts;
     return (
-        <div className="flex flex-col items-center w-full shadow-[0rem_0rem_1rem_0.2rem] p-3 rounded-xl shadow-violet-500 ">
-            <div className="flex flex-row justify-center gap-10 min-w-min">
-                <GradientButton color="tealLime" onClick={showModalHandler}>
-                    Agregar cuenta
-                </GradientButton>
-                <GradientButton
-                    onClick={() => {
-                        navigate("/bankaccounts");
-                    }}
-                >
-                    Ver mis cuentas
-                </GradientButton>
-            </div>
-            <article className="flex flex-row items-center w-full gap-3 p-5 overflow-x-scroll min-h-min md:max-w-4xl lg:content-center">
-                {accounts.map((account: BankAccountType) => (
+        <div className="flex flex-col items-center w-full shadow-[0rem_0rem_1rem_0.2rem] p-3 gap-2 rounded-xl shadow-violet-500 ">
+            <h2 className="mb-0">Cuentas</h2>
+            <article className="flex flex-col justify-center md:flex-wrap md:flex-row items-center w-full gap-3 p-5 min-h-min md:w-full lg:content-center">
+                {accounts?.map((account: BankAccountType) => (
                     <BankAccountCard
                         color={account.color}
                         name={account.name}
@@ -66,12 +53,17 @@ const DashboardBankAccounts = () => {
                     />
                 ))}
             </article>
-            <CreateAccountModal
-                showModal={showModal}
-                setShowModal={(bool: boolean) => setShowModal(bool)}
-            />
+            <div className="flex flex-row justify-center gap-10 min-w-min">
+                <GradientButton color="tealLime" onClick={showModalHandler}>
+                    Agregar cuenta
+                </GradientButton>
+                <CreateAccountModal
+                    showModal={showModal}
+                    setShowModal={(bool: boolean) => setShowModal(bool)}
+                />
+            </div>
         </div>
     );
 };
 
-export default DashboardBankAccounts;
+export default AccountsSummary;
