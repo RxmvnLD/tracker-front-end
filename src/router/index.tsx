@@ -9,6 +9,7 @@ import MainLayout from "../layouts/MainLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import AccountsPage from "../pages/AccountsPage";
 import AccountDetails from "../components/accounts/AccountDetails";
+import TransactionsPage from "../pages/TransactionsPage";
 
 const router = createBrowserRouter([
     {
@@ -40,12 +41,14 @@ const router = createBrowserRouter([
                 element: <MainLayout />,
                 children: [
                     { element: <DashboardPage />, path: "/dashboard" },
-                    { element: <DashboardPage />, path: "/transactions" },
                     { element: <AccountsPage />, path: "/bankaccounts" },
                     {
                         element: <AccountDetails />,
                         path: "/bankaccounts/:id",
                     },
+                    { element: <TransactionsPage />, path: "/transactions" },
+                    { element: <DashboardPage />, path: "/transactions/:id" },
+
                     { element: <DashboardPage />, path: "/bets" },
                     { element: <DashboardPage />, path: "/passwords" },
                     { element: <DashboardPage />, path: "/configuration" },

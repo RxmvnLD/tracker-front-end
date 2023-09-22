@@ -26,7 +26,7 @@ export type BankAccColor =
     | "gray";
 
 export type SummaryBankAccColors = {
-    [key: string]: { name: BankAccColor; value: string };
+    [key: string]: { name: BankAccColor; value: string; nameEsp: string };
 };
 export type BankAccountTypes = {
     [key: string]: { name: BankAccType; value: string };

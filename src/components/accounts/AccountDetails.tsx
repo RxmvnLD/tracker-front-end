@@ -8,7 +8,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import UpdateAccountModal from "./UpdateAccountModal";
-import TransactionCard from "../TransactionCard";
+import TransactionCard from "../transactions/TransactionCard";
 import AccountGraph from "./AccountGraph";
 
 const AccountDetails = () => {
@@ -24,7 +24,6 @@ const AccountDetails = () => {
                 const { data } = await axiosInstance.get(
                     `/api/bankaccounts/${id}`,
                 );
-                console.log(data);
 
                 return data;
             } catch (error: any) {
@@ -45,7 +44,7 @@ const AccountDetails = () => {
     return (
         <div className="flex flex-col items-center w-full shadow-[0rem_0rem_1rem_0.2rem] p-3 gap-2 rounded-xl shadow-violet-500 ">
             <h2 className="mb-0">{data.name}</h2>
-            <div className="flex flex-col md:flex-row items-center justify-center md:w-full gap-10 ">
+            <div className="flex flex-col items-center justify-center gap-10 md:flex-row md:w-full ">
                 <div>
                     <AccountGraph
                         balance={data?.balance}
@@ -53,31 +52,39 @@ const AccountDetails = () => {
                         availableCredit={data?.availableCredit}
                     />
                 </div>
-                <div className="flex flex-col items-center justify-evenly gap-5 h-full">
+                <div className="flex flex-col items-center h-full gap-5 justify-evenly">
                     <div className="flex flex-col gap-2">
                         {(data?.type === "debit" || data?.type === "dual") && (
-                            <h4 className="m-0 w-full font-semibold">
+                            <h4 className="w-full m-0 font-semibold">
                                 Balance:{" "}
                                 <span className="font-normal">
-                                    {data?.balance}
+                                    ${data?.balance}
                                 </span>
                             </h4>
                         )}
                         {(data?.type === "credit" || data?.type === "dual") && (
                             <>
-                                <h4 className="m-0 w-full font-semibold">
+                                <h4 className="w-full m-0 font-semibold">
                                     Crédito total:{" "}
                                     <span className="font-normal">
-                                        {data?.totalCredit}
+                                        ${data?.totalCredit}
                                     </span>
                                 </h4>
-                                <h4 className="m-0 w-full font-semibold">
+                                <h4 className="w-full m-0 font-semibold">
+                                    Deuda:{" "}
+                                    <span className="font-normal">
+                                        $
+                                        {data?.totalCredit -
+                                            data?.availableCredit}
+                                    </span>
+                                </h4>
+                                <h4 className="w-full m-0 font-semibold">
                                     Crédito disponible:{" "}
                                     <span className="font-normal">
-                                        {data?.availableCredit}
+                                        ${data?.availableCredit}
                                     </span>
                                 </h4>
-                                <h4 className="m-0 w-full font-semibold">
+                                <h4 className="w-full m-0 font-semibold">
                                     Fecha de corte:{" "}
                                     <span className="font-normal">
                                         {dayjs(data?.cuttOffDay)
@@ -85,7 +92,7 @@ const AccountDetails = () => {
                                             .toString()}
                                     </span>
                                 </h4>
-                                <h4 className="m-0 w-full font-semibold">
+                                <h4 className="w-full m-0 font-semibold">
                                     Fecha límite de pago:{" "}
                                     <span className="font-normal">
                                         {dayjs(data?.paydayLimit)
@@ -108,7 +115,7 @@ const AccountDetails = () => {
             </div>
 
             {/* incomes */}
-            <article className="flex flex-col justify-center md:flex-wrap md:flex-row items-center w-full gap-3 p-5 min-h-min md:w-full lg:content-center">
+            <article className="flex flex-col items-center justify-center w-full gap-3 p-5 md:flex-wrap md:flex-row min-h-min md:w-full lg:content-center">
                 {data?.transactions?.incomes.map(
                     (transaction: TransactionType) => (
                         <TransactionCard
@@ -124,7 +131,7 @@ const AccountDetails = () => {
                     ),
                 )}
             </article>
-            <article className="flex flex-col justify-center md:flex-wrap md:flex-row items-center w-full gap-3 p-5 min-h-min md:w-full lg:content-center">
+            <article className="flex flex-col items-center justify-center w-full gap-3 p-5 md:flex-wrap md:flex-row min-h-min md:w-full lg:content-center">
                 {data?.transactions?.expenses.map(
                     (transaction: TransactionType) => (
                         <TransactionCard

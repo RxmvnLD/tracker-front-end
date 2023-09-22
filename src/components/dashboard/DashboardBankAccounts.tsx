@@ -4,7 +4,7 @@ import { CircularProgress } from "@mui/material";
 import { BankAccountCard as BankAccountType } from "../../types";
 import GradientButton from "../GradientButton";
 import { useNavigate } from "react-router-dom";
-import BankAccountCard from "../BankAccountCard";
+import BankAccountCard from "../accounts/BankAccountCard";
 import { useState } from "react";
 import CreateAccountModal from "../accounts/CreateAccountModal";
 

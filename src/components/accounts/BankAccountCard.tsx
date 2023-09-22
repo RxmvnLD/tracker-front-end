@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
-import { BankAccountCard as BankAccountType } from "../types";
+import { BankAccountCard as BankAccountType } from "../../types/index.ts";
 import {
     SummaryBankAccountsColors,
     BankAccountsType,
-} from "../config/constants.ts";
-import ProgressBar from "./ProgressBar.tsx";
+} from "../../config/constants.ts";
+import ProgressBar from "../ProgressBar.tsx";
 
 const BankAccountCard = ({
     name,
