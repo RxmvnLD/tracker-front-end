@@ -1,13 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axiosInstance";
 import { CircularProgress } from "@mui/material";
-import TransactionCard from "../TransactionCard";
+import TransactionCard from "../transactions/TransactionCard";
 import { Transaction as TransactionType } from "../../types";
 import GradientButton from "../GradientButton";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import CreateTransactionModal from "../transactions/CreateTransactionModal";
 
 const DashboardTransactions = () => {
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
     const {
         isLoading,
         data: transactions,
@@ -33,7 +36,12 @@ const DashboardTransactions = () => {
     return (
         <div className="flex flex-col items-center w-full shadow-[0rem_0rem_1rem_0.2rem] p-3 rounded-xl shadow-violet-500 ">
             <div className="flex flex-row justify-center gap-10 min-w-min">
-                <GradientButton color="tealLime">
+                <GradientButton
+                    color="tealLime"
+                    onClick={() => {
+                        setShowModal(true);
+                    }}
+                >
                     Agregar transacción
                 </GradientButton>
                 <GradientButton
@@ -58,6 +66,10 @@ const DashboardTransactions = () => {
                     />
                 ))}
             </article>
+            <CreateTransactionModal
+                showModal={showModal}
+                setShowModal={(bool: boolean) => setShowModal(bool)}
+            />
         </div>
     );
 };

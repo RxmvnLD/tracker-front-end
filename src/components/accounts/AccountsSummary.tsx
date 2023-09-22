@@ -3,7 +3,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { CircularProgress } from "@mui/material";
 import GradientButton from "../GradientButton";
 import { BankAccountCard as BankAccountType } from "../../types";
-import BankAccountCard from "../BankAccountCard";
+import BankAccountCard from "./BankAccountCard";
 import CreateAccountModal from "./CreateAccountModal";
 import { useState } from "react";
 

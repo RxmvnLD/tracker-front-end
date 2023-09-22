@@ -21,7 +21,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 interface FormInputs {
     name: string;
-    type: string;
+    type: BankAccType;
     totalCredit?: number;
     availableCredit?: number;
     balance?: number;
@@ -61,7 +61,6 @@ const UpdateAccountModal = ({
                     const { data } = await axiosInstance.get(
                         `/api/bankaccounts/${id}`,
                     );
-                    console.log(data);
 
                     return data;
                 } catch (error: any) {

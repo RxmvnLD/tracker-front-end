@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
-import { Transaction as TransactionType } from "../types";
+import { Transaction as TransactionType } from "../../types";
 import { MdAttachMoney, MdMoneyOff } from "react-icons/md";
+import TransactionDetailsModal from "./TransactionDetailsModal";
+import { useState } from "react";
 const TransactionCard = ({ amount, id, name, type }: TransactionType) => {
+    const [showModal, setShowModal] = useState(false);
     return (
         <section
             className={`${
@@ -24,12 +27,19 @@ const TransactionCard = ({ amount, id, name, type }: TransactionType) => {
                     Tipo: {type === "expense" ? "Gasto" : "Ingreso"}
                 </p>
             </div>
-            <Link
-                to={`transactions/${id}`}
-                className="m-0 text-white decoration-transparent"
+            <button
+                className="m-0 text-white bg-transparent text-base"
+                onClick={() => {
+                    setShowModal(true);
+                }}
             >
                 Ver detalles
-            </Link>
+            </button>
+            <TransactionDetailsModal
+                showModal={showModal}
+                setShowModal={(bool: boolean) => setShowModal(bool)}
+                id={id}
+            />
         </section>
     );
 };

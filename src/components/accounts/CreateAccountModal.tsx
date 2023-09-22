@@ -16,6 +16,10 @@ import axiosInstance from "../../utils/axiosInstance";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import {
+    BankAccountsType,
+    SummaryBankAccountsColors,
+} from "../../config/constants";
 
 interface AccountModalProps {
     showModal: boolean;
@@ -147,21 +151,18 @@ const CreateAccountModal = ({
                                                 );
                                             }}
                                         >
-                                            <MenuItem
-                                                value={"debit"}
-                                                key="debit"
-                                            >
-                                                Débito
-                                            </MenuItem>
-                                            <MenuItem
-                                                value={"credit"}
-                                                key="credit"
-                                            >
-                                                Crédito
-                                            </MenuItem>
-                                            <MenuItem value={"dual"} key="dual">
-                                                Dual
-                                            </MenuItem>
+                                            {Object.entries(
+                                                BankAccountsType,
+                                            ).map(([key, value]) => {
+                                                return (
+                                                    <MenuItem
+                                                        value={key}
+                                                        key={key}
+                                                    >
+                                                        {value.value}
+                                                    </MenuItem>
+                                                );
+                                            })}
                                         </TextField>
                                         {/* Credit/balance details */}
                                         {(type === "debit" ||
@@ -388,63 +389,18 @@ const CreateAccountModal = ({
                                                 required: true,
                                             })}
                                         >
-                                            <MenuItem
-                                                value={"yellow"}
-                                                key="yellow"
-                                            >
-                                                Amarillo
-                                            </MenuItem>
-                                            <MenuItem value={"blue"} key="blue">
-                                                Azul
-                                            </MenuItem>
-                                            <MenuItem
-                                                value={"white"}
-                                                key="white"
-                                            >
-                                                Blanco
-                                            </MenuItem>
-                                            <MenuItem
-                                                value={"brown"}
-                                                key="brown"
-                                            >
-                                                Café
-                                            </MenuItem>
-                                            <MenuItem value={"cyan"} key="cyan">
-                                                Cyan
-                                            </MenuItem>
-                                            <MenuItem value={"gray"} key="gray">
-                                                Gris
-                                            </MenuItem>
-                                            <MenuItem
-                                                value={"purple"}
-                                                key="purple"
-                                            >
-                                                Morado
-                                            </MenuItem>
-                                            <MenuItem
-                                                value={"orange"}
-                                                key="orange"
-                                            >
-                                                Naranja
-                                            </MenuItem>
-                                            <MenuItem
-                                                value={"black"}
-                                                key="black"
-                                            >
-                                                Negro
-                                            </MenuItem>
-                                            <MenuItem value={"red"} key="red">
-                                                Rojo
-                                            </MenuItem>
-                                            <MenuItem value={"pink"} key="pink">
-                                                Rosa
-                                            </MenuItem>
-                                            <MenuItem
-                                                value={"green"}
-                                                key="green"
-                                            >
-                                                Verde
-                                            </MenuItem>
+                                            {Object.entries(
+                                                SummaryBankAccountsColors,
+                                            ).map(([key, value]) => {
+                                                return (
+                                                    <MenuItem
+                                                        value={value.name}
+                                                        key={value.name}
+                                                    >
+                                                        {value.nameEsp}
+                                                    </MenuItem>
+                                                );
+                                            })}
                                         </TextField>
                                     </div>
                                     {/*footer*/}

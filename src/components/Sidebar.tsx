@@ -43,23 +43,59 @@ const Mobile = () => {
                     isOpen ? "top-10" : "top-[-550px]"
                 }`}
             >
-                <SidebarItem text={"Dasboard"}>
+                <SidebarItem
+                    text={"Dasboard"}
+                    href="/dashboard"
+                    onClick={() => {
+                        setIsOppen(!isOpen);
+                    }}
+                >
                     <AiOutlineHome />
                 </SidebarItem>
-                <SidebarItem text={"Cuentas"}>
+                <SidebarItem
+                    text={"Cuentas"}
+                    href="/bankaccounts"
+                    onClick={() => {
+                        setIsOppen(!isOpen);
+                    }}
+                >
                     <LiaPiggyBankSolid />
                 </SidebarItem>
-                <SidebarItem text={"Transacciones"}>
+                <SidebarItem
+                    text={"Transacciones"}
+                    href="/transactions"
+                    onClick={() => {
+                        setIsOppen(!isOpen);
+                    }}
+                >
                     <LiaMoneyBillWaveSolid />
                 </SidebarItem>
-                <SidebarItem text={"Apuestas"}>
+                <SidebarItem
+                    text={"Apuestas"}
+                    href="/dashboard"
+                    onClick={() => {
+                        setIsOppen(!isOpen);
+                    }}
+                >
                     <GiPayMoney />
                 </SidebarItem>
-                <SidebarItem text={"Contraseñas"}>
+                <SidebarItem
+                    text={"Contraseñas"}
+                    href="/dashboard"
+                    onClick={() => {
+                        setIsOppen(!isOpen);
+                    }}
+                >
                     <MdOutlinePassword />
                 </SidebarItem>
                 <div className="w-full h-[1px] bg-white"></div>
-                <SidebarItem text={"Configuración"}>
+                <SidebarItem
+                    text={"Configuración"}
+                    href="/dashboard"
+                    onClick={() => {
+                        setIsOppen(!isOpen);
+                    }}
+                >
                     <GiSettingsKnobs />
                 </SidebarItem>
                 <SidebarItem
@@ -169,6 +205,7 @@ const SidebarItem = ({
                 className={`flex items-center gap-2 pl-3 py-2  hover:bg-[#4338ca] hover:shadow-[0rem_0rem_1rem_0.1rem] hover:shadow-indigo-700 rounded-md text-white decoration-transparent ${
                     showText ? "pr-10" : "pr-3"
                 }`}
+                onClick={onClick}
             >
                 <div className="flex items-center text-3xl">{children}</div>
                 <div
